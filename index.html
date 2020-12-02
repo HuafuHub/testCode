@@ -182,37 +182,36 @@
         <img src="./tip.jpg" />
       </div>
       <div class="text">
-        <input type="text" value="ebc6c249662545b7b89410412c52fb02" />
+        <input type="text" value="" id="downName" />
       </div>
       <div class="code">
         <input type="text" placeholder="请输入图片的验证码" id="val" />
         <i id="codeBox"><canvas id="canv" width="100" height="50"></canvas></i>
       </div>
       <div class="btn">
-        <a href="" id="downBox"><span id="down">查询</span></a>
+        <a href="" id="downBox" download="0.pdf">
+          <span id="down">查询</span>
+        </a>
       </div>
     </div>
   </body>
   <script>
     ;(function (window, document) {
-      var hash = location.hash
-      alert(hash)
+      var hash = location.hash.replace(/#/g, '')
       var btn = document.getElementById('down')
       var downBox = document.getElementById('downBox')
+      var downName = document.getElementById('downName')
       var val = document.getElementById('val')
       var codeBox = document.getElementById('codeBox')
       var canv = document.getElementById('canv')
       var ctx = canv.getContext('2d')
       var code = getCode()
       var testResault = false
+      initContent()
       renderText(code)
       btn.addEventListener('touchend', () => {
         testResault = testCode()
-        if (testResault) {
-          toDownLoad()
-        } else {
-          resetText()
-        }
+        resetText()
       })
       codeBox.addEventListener('touchend', () => {
         resetText()
@@ -222,8 +221,10 @@
           e.preventDefault()
         }
       })
-      function toDownLoad() {
-        downBox.href = './resource/test.pdf'
+      function initContent() {
+        downName.value = hash
+        downBox.download = hash + '.pdf'
+        downBox.href = './resource/' + hash + '.pdf'
       }
       function clear() {
         val.value = ''
@@ -233,7 +234,6 @@
         var value = val.value.toString().trim().toLowerCase()
         var text = code.toString().trim().toLowerCase()
         if (value === text) {
-          val.value = ''
           return true
         } else {
           alert('验证码错误')
