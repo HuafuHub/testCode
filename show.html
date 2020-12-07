@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>checkReport.do(586x740)</title>
+    <style>
+      html {
+        /*
+        100 * (屏幕尺寸 / 设计基准尺寸)
+
+        以iPhone6 plus为基准
+        100 * ( 414 / 1080 ) = 38.333333333333336px
+        1vw = 414/100 = 4.14px
+        root = 38.333333333333336 / 4.14 = 9.259259259259261vw
+
+        以iPhone6为基准
+        100 * ( 375 / 750 ) = 50px
+        1vw = 375/100 = 3.75px
+        root = 50 / 3.75 = 13.333333333333334vw
+      */
+        font-size: 13.333333333333334vw;
+      }
+      body {
+        font-family: helvetica;
+        max-width: 750px;
+        margin: 0 auto;
+        font-size: 0;
+      }
+      body * {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-text-size-adjust: 100%;
+      }
+      a,
+      button,
+      input {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      }
+      button,
+      input {
+        -webkit-appearance: none;
+        border-radius: 0;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      input {
+        outline: none;
+        vertical-align: middle;
+        padding: 0;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      img {
+        vertical-align: middle;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      p {
+        margin: 0;
+      }
+      button {
+        border: none;
+        background-color: transparent;
+      }
+      .wrap {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000000;
+      }
+      .wrap .img {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <img src="" class="img" />
+    </div>
+    <script>
+      var img = document.querySelector('.img')
+      var hash = location.hash.replace(/#/g, '')
+      img.src = './resource/' + hash + '.png'
+    </script>
+  </body>
+</html>

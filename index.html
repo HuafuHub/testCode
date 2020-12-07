@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>云南人社表单验证</title>
+    <title></title>
     <style>
       html {
         /*
@@ -73,239 +73,116 @@
         border: none;
         background-color: transparent;
       }
-      .title {
-        font-size: 0.3rem;
+      body {
+        margin: 0;
+      }
+      .wrap {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
         text-align: center;
-        padding: 0.64rem 0;
-        color: #f66400;
-      }
-      .tip {
-        width: 6.9rem;
-        height: 3.5rem;
-        margin: 0.3rem auto;
-      }
-      .tip img {
-        display: block;
-        width: 100%;
-        height: 100%;
-      }
-      .text,
-      .code {
-        width: 6.34rem;
-        height: 0.54rem;
-        border: 1px solid #d4d4d4;
-        margin: 0 auto;
-      }
-      .text input,
-      .code input {
-        height: 100%;
-        background-color: #f8f8f8;
-        color: #1c1c1c;
-        border: none;
-        padding-left: 0.2rem;
+        padding: 0.6rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         box-sizing: border-box;
       }
-      .text input {
-        width: 100%;
-      }
-      .code {
-        display: flex;
-        flex-direction: row;
-        margin-top: 0.3rem;
-      }
-      .code input {
-        width: 4.5rem;
-        background-color: #f8f8f8;
-        border-right: 1px solid #d4d4d4;
-      }
-      .code input::placeholder {
-        color: #696969;
-      }
-      .code i {
-        width: 1.84rem;
-        height: 0.54rem;
-        line-height: 0.54rem;
-        font-size: 0.3rem;
-        text-align: center;
-      }
-      .btn {
-        margin-top: 1.5rem;
-        text-align: center;
-      }
-      .btn a {
+      .wrap .warn-icon {
         display: inline-block;
-        width: 3rem;
-        height: 0.68rem;
+        width: 1rem;
+        height: 1rem;
+        background-image: url('./warn.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-top: 2rem;
       }
-      .btn span {
-        position: relative;
+      .wrap .title {
+        font-size: 0.38rem;
+        font-weight: normal;
+        margin: 0.6rem 0;
+      }
+      .wrap .msg {
+        font-size: 0.3rem;
+        margin-top: 0.4rem;
+      }
+      .wrap a {
         display: inline-block;
         font-size: 0.3rem;
-        width: 2.32rem;
-        height: 0.68rem;
-        line-height: 0.68rem;
-        text-align: center;
-        color: #fff;
-        background-color: #f66400;
-        cursor: pointer;
+        text-decoration: none;
+        color: #5c5a85;
       }
-      .btn span::before,
-      .btn span::after {
-        content: '';
-        display: inline-block;
-        width: 0.68rem;
-        height: 0.68rem;
-        border-radius: 50%;
+      .wrap a.go-show {
+        font-weight: bold;
+        margin-top: 1rem;
+        padding: 0.2rem 1rem;
+        background-color: #f2f2f2;
+        color: #00a64c;
+        border-radius: 0.1rem;
+      }
+      .wrap a.tip {
         position: absolute;
-        background-color: #f66400;
+        bottom: 0.6rem;
       }
-      .btn span::before {
-        left: 0;
-        top: 0;
-        transform: translateX(-50%);
+      .wrap .content {
+        display: inline-block;
+        width: 6rem;
+        font-size: 0.3rem;
+        color: inherit;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
-      .btn span::after {
-        right: 0;
-        top: 0;
-        transform: translateX(50%);
+      .wrap .all-btn {
+        display: inline-block;
+        width: 0.3rem;
+        height: 0.3rem;
+        background-image: url('./down.png');
+        background-repeat: no-repeat;
+        background-size: contain;
       }
-      #canv {
-        width: 1.84rem;
-        height: 0.54rem;
+      .wrap .link.active .content {
+        display: block;
+        word-break: break-all;
+        white-space: normal;
+        overflow: auto;
+        text-overflow: inherit;
+      }
+      .wrap .link.active .all-btn {
+        background-image: url('./up.png');
+        margin-top: 0.1rem;
       }
     </style>
   </head>
   <body>
     <div class="wrap">
-      <h1 class="title">云南人社电子表单在线验证平台</h1>
-      <div class="tip">
-        <img src="./tip.jpg" />
+      <i class="warn-icon"></i>
+      <h3 class="title">将要访问</h3>
+      <div class="link">
+        <span class="content"
+          >http://221.213.62.194/YTJAuthInterface/checkReport.do?printID=4820869451&aac002=532303199101244551</span
+        >
+        <i class="all-btn"></i>
       </div>
-      <div class="text">
-        <input type="text" value="" id="downName" />
-      </div>
-      <div class="code">
-        <input type="text" placeholder="请输入图片的验证码" id="val" />
-        <i id="codeBox"><canvas id="canv" width="100" height="50"></canvas></i>
-      </div>
-      <div class="btn">
-        <a href="" id="downBox" download="0.pdf">
-          <span id="down">查询</span>
-        </a>
-      </div>
+      <p class="msg">该地址为IP地址，请使用域名访问网站。</p>
+      <a href="" class="go-show">继续访问</a>
+      <a
+        href="https://weixin110.qq.com/security/newreadtemplate?t=webpage_intercept/w_form&url=http%3A%2F%2F221.213.62.194%2FYTJAuthInterface%2FcheckReport.do%3FprintID%3D4820869451%26aac002%3D532301199507294511&blocktype=102&exportkey=A2GArat%2Bpn9EPqEVi6p9gek%3D&pass_ticket=IGWQCjOJJHxPKrT%2FNR2jfYsx3y05Rhw5eBrv%2BjDZNvFWzJBPkW1F4PcWoZyd4gW6&wechat_real_lang=zh_CN&wx_header=0#/"
+        class="tip"
+        >申请恢复</a
+      >
     </div>
-  </body>
-  <script>
-    ;(function (window, document) {
-      var hash = location.hash.replace(/#/g, '')
-      var btn = document.getElementById('down')
-      var downBox = document.getElementById('downBox')
-      var downName = document.getElementById('downName')
-      var val = document.getElementById('val')
-      var codeBox = document.getElementById('codeBox')
-      var canv = document.getElementById('canv')
-      var ctx = canv.getContext('2d')
-      var code = getCode()
-      var testResault = false
-      initContent()
-      renderText(code)
-      btn.addEventListener('touchend', () => {
-        testResault = testCode()
-      })
-      codeBox.addEventListener('touchend', () => {
-        resetText()
-      })
-      downBox.addEventListener('touchend', (e) => {
-        if (!testResault) {
-          e.preventDefault()
-        }
-      })
-      function initContent() {
-        downName.value = hash
-        downBox.download = hash + '.pdf'
-        downBox.href = './resource/' + hash + '.pdf'
-      }
-      function clear() {
-        val.value = ''
-        ctx.clearRect(0, 0, 100, 50)
-      }
-      function testCode() {
-        var value = val.value.toString().trim().toLowerCase()
-        var text = code.toString().trim().toLowerCase()
-        if (value === text) {
-          return true
+    <script>
+      var link = document.querySelector('.link')
+      var all = document.querySelector('.all-btn')
+      var go = document.querySelector('.go-show')
+      go.href = './show.html' + location.hash
+      all.addEventListener('touchend', (e) => {
+        if (link.className === 'link active') {
+          link.className = 'link'
         } else {
-          alert('验证码错误')
-          return false
+          link.className = 'link active'
         }
-      }
-      function resetText() {
-        code = getCode()
-        clear()
-        renderText(code)
-      }
-      function renderText(code) {
-        for (var i = 0; i < code.length; i++) {
-          drawWord(code[i], getRandom(5, 8, true) / 10, i, getRandom(-5, 5))
-        }
-      }
-      function drawWord(word, size, num, deg) {
-        var info = getInfo(num)
-        ctx.beginPath()
-        ctx.fillStyle = info.color
-        ctx.font = size + 'rem' + ' Roboto'
-        ctx.save()
-        ctx.rotate((deg * Math.PI) / 180)
-        ctx.fillText(word, info.x, info.y)
-        ctx.restore()
-      }
-      function getInfo(num) {
-        switch (num) {
-          case 0:
-            return {
-              color: '#b9c616',
-              x: 10,
-              y: 45,
-            }
-          case 1:
-            return {
-              color: '#875a85',
-              x: 30,
-              y: 41,
-            }
-          case 2:
-            return {
-              color: '#62d137',
-              x: 50,
-              y: 38,
-            }
-          case 3:
-            return {
-              color: '#1a5c96',
-              x: 70,
-              y: 35,
-            }
-        }
-      }
-      function getCode() {
-        var code = ''
-        // 65-90
-        // 97-122
-        for (var i = 0; i < 4; i++) {
-          if (Math.random() > 0.5) {
-            code += String.fromCharCode(getRandom(65, 90, true))
-          } else {
-            code += String.fromCharCode(getRandom(97, 122, true))
-          }
-        }
-        return code
-      }
-      function getRandom(min, max, includeMax) {
-        if (includeMax) {
-          return Math.floor(Math.random() * (max - min + 1) + min)
-        }
-        return Math.floor(Math.random() * (max - min) + min)
-      }
-    })(window, document)
-  </script>
+      })
+    </script>
+  </body>
 </html>
