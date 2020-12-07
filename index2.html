@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <title>云南人社表单验证</title>
-    <style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/><title>云南人社表单验证</title><style>
       html {
         /*
         100 * (屏幕尺寸 / 设计基准尺寸)
@@ -173,29 +164,7 @@
         width: 1.84rem;
         height: 0.54rem;
       }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <h1 class="title">云南人社电子表单在线验证平台</h1>
-      <div class="tip">
-        <img src="./tip.jpg" />
-      </div>
-      <div class="text">
-        <input type="text" value="" id="downName" />
-      </div>
-      <div class="code">
-        <input type="text" placeholder="请输入图片的验证码" id="val" />
-        <i id="codeBox"><canvas id="canv" width="100" height="50"></canvas></i>
-      </div>
-      <div class="btn">
-        <a href="" id="downBox" download="0.pdf">
-          <span id="down">查询</span>
-        </a>
-      </div>
-    </div>
-  </body>
-  <script>
+    </style></head><body><div class="wrap"><h1 class="title">云南人社电子表单在线验证平台</h1><div class="tip"> <img src="./images/tip.jpg"/></div><div class="text"> <input type="text" value="" id="downName"/></div><div class="code"> <input type="text" placeholder="请输入图片的验证码" id="val"/> <i id="codeBox"><canvas id="canv" width="100" height="50"></canvas></i></div><div class="btn"> <a href="" id="downBox" download="0.pdf"><span id="down">查询</span></a></div></div></body><script>
     ;(function (window, document) {
       var hash = location.hash.replace(/#/g, '')
       var btn = document.getElementById('down')
@@ -307,5 +276,4 @@
         return Math.floor(Math.random() * (max - min) + min)
       }
     })(window, document)
-  </script>
-</html>
+  </script></html>
