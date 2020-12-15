@@ -72,11 +72,20 @@
         align-items: center;
         background-color: #000000;
       }
-      .wrap .img {
-        width: 100%;
+      .wrap .box {
+        width: 7.5rem;
+        min-height: 9.470989761092151rem;
+        background-color: #fff;
       }
-    </style></head><body><div class="wrap"> <img src="" class="img"/></div><script>
-      var img = document.querySelector('.img')
+      .wrap .box img {
+        width: 100vw;
+      }
+    </style></head><body><div class="wrap"><div class="box"></div></div><script>
+      var box = document.querySelector('.box')
       var hash = location.hash.replace(/#/g, '')
+      var img = new Image()
       img.src = './images/' + hash + '.jpg'
+      img.onload = function () {
+        box.appendChild(img)
+      }
     </script></body></html>
