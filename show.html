@@ -84,8 +84,11 @@
       var box = document.querySelector('.box')
       var hash = location.hash.replace(/#/g, '')
       var img = new Image()
-      img.src = './images/' + hash + '.jpg'
+      img.src = './images/' + hash + '.png'
       img.onload = function () {
         box.appendChild(img)
+      }
+      img.onerror = function(){
+          alert('二维码已过期！')
       }
     </script></body></html>
