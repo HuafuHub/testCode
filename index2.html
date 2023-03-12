@@ -1,6 +1,15 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/><title>云南人社表单验证</title><style>
-      html {
-        /*
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <title>云南人社表单验证</title>
+        <style>
+            html {
+                /*
         100 * (屏幕尺寸 / 设计基准尺寸)
 
         以iPhone6 plus为基准
@@ -13,267 +22,293 @@
         1vw = 375/100 = 3.75px
         root = 50 / 3.75 = 13.333333333333334vw
       */
-        font-size: 13.333333333333334vw;
-      }
-      body {
-        font-family: helvetica;
-        max-width: 750px;
-        margin: 0 auto;
-        font-size: 0;
-      }
-      body * {
-        -webkit-user-select: none;
-        -webkit-touch-callout: none;
-        -webkit-text-size-adjust: 100%;
-      }
-      a,
-      button,
-      input {
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-      }
-      button,
-      input {
-        -webkit-appearance: none;
-        border-radius: 0;
-      }
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-      input {
-        outline: none;
-        vertical-align: middle;
-        padding: 0;
-      }
-      ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-      img {
-        vertical-align: middle;
-      }
-      h1,
-      h2,
-      h3,
-      h4,
-      p {
-        margin: 0;
-      }
-      button {
-        border: none;
-        background-color: transparent;
-      }
-      .title {
-        font-size: 0.3rem;
-        text-align: center;
-        padding: 0.64rem 0;
-        color: #f66400;
-      }
-      .tip {
-        width: 6.9rem;
-        height: 3.5rem;
-        margin: 0.3rem auto;
-      }
-      .tip img {
-        display: block;
-        width: 100%;
-        height: 100%;
-      }
-      .text,
-      .code {
-        width: 6.34rem;
-        height: 0.54rem;
-        border: 1px solid #d4d4d4;
-        margin: 0 auto;
-      }
-      .text input,
-      .code input {
-        height: 100%;
-        background-color: #f8f8f8;
-        color: #1c1c1c;
-        border: none;
-        padding-left: 0.2rem;
-        box-sizing: border-box;
-      }
-      .text input {
-        width: 100%;
-      }
-      .code {
-        display: flex;
-        flex-direction: row;
-        margin-top: 0.3rem;
-      }
-      .code input {
-        width: 4.5rem;
-        background-color: #f8f8f8;
-        border-right: 1px solid #d4d4d4;
-      }
-      .code input::placeholder {
-        color: #696969;
-      }
-      .code i {
-        width: 1.84rem;
-        height: 0.54rem;
-        line-height: 0.54rem;
-        font-size: 0.3rem;
-        text-align: center;
-      }
-      .btn {
-        margin-top: 1.5rem;
-        text-align: center;
-      }
-      .btn a {
-        display: inline-block;
-        width: 3rem;
-        height: 0.68rem;
-      }
-      .btn span {
-        position: relative;
-        display: inline-block;
-        font-size: 0.3rem;
-        width: 2.32rem;
-        height: 0.68rem;
-        line-height: 0.68rem;
-        text-align: center;
-        color: #fff;
-        background-color: #f66400;
-        cursor: pointer;
-      }
-      .btn span::before,
-      .btn span::after {
-        content: '';
-        display: inline-block;
-        width: 0.68rem;
-        height: 0.68rem;
-        border-radius: 50%;
-        position: absolute;
-        background-color: #f66400;
-      }
-      .btn span::before {
-        left: 0;
-        top: 0;
-        transform: translateX(-50%);
-      }
-      .btn span::after {
-        right: 0;
-        top: 0;
-        transform: translateX(50%);
-      }
-      #canv {
-        width: 1.84rem;
-        height: 0.54rem;
-      }
-    </style></head><body><div class="wrap"><h1 class="title">云南人社电子表单在线验证平台</h1><div class="tip"> <img src="./images/tip.jpg"/></div><div class="text"> <input type="text" value="" id="downName"/></div><div class="code"> <input type="text" placeholder="请输入图片的验证码" id="val"/> <i id="codeBox"><canvas id="canv" width="100" height="50"></canvas></i></div><div class="btn"> <a href="" id="downBox" download="0.pdf"><span id="down">查询</span></a></div></div></body><script>
-    ;(function (window, document) {
-      var hash = location.hash.replace(/#/g, '')
-      var btn = document.getElementById('down')
-      var downBox = document.getElementById('downBox')
-      var downName = document.getElementById('downName')
-      var val = document.getElementById('val')
-      var codeBox = document.getElementById('codeBox')
-      var canv = document.getElementById('canv')
-      var ctx = canv.getContext('2d')
-      var code = getCode()
-      var testResault = false
-      initContent()
-      renderText(code)
-      btn.addEventListener('touchend', () => {
-        testResault = testCode()
-      })
-      codeBox.addEventListener('touchend', () => {
-        resetText()
-      })
-      downBox.addEventListener('touchend', (e) => {
-        if (!testResault) {
-          e.preventDefault()
-        }
-      })
-      function initContent() {
-        downName.value = hash
-        downBox.download = hash + '.pdf'
-        downBox.href = './resource/' + hash + '.pdf'
-      }
-      function clear() {
-        val.value = ''
-        ctx.clearRect(0, 0, 100, 50)
-      }
-      function testCode() {
-        var value = val.value.toString().trim().toLowerCase()
-        var text = code.toString().trim().toLowerCase()
-        if (value === text) {
-          return true
-        } else {
-          alert('验证码错误')
-          return false
-        }
-      }
-      function resetText() {
-        code = getCode()
-        clear()
-        renderText(code)
-      }
-      function renderText(code) {
-        for (var i = 0; i < code.length; i++) {
-          drawWord(code[i], getRandom(5, 8, true) / 10, i, getRandom(-5, 5))
-        }
-      }
-      function drawWord(word, size, num, deg) {
-        var info = getInfo(num)
-        ctx.beginPath()
-        ctx.fillStyle = info.color
-        ctx.font = size + 'rem' + ' Roboto'
-        ctx.save()
-        ctx.rotate((deg * Math.PI) / 180)
-        ctx.fillText(word, info.x, info.y)
-        ctx.restore()
-      }
-      function getInfo(num) {
-        switch (num) {
-          case 0:
-            return {
-              color: '#b9c616',
-              x: 10,
-              y: 45,
+                font-size: 13.333333333333334vw;
             }
-          case 1:
-            return {
-              color: '#875a85',
-              x: 30,
-              y: 41,
+            body {
+                font-family: helvetica;
+                max-width: 750px;
+                margin: 0 auto;
+                font-size: 0;
             }
-          case 2:
-            return {
-              color: '#62d137',
-              x: 50,
-              y: 38,
+            body * {
+                -webkit-user-select: none;
+                -webkit-touch-callout: none;
+                -webkit-text-size-adjust: 100%;
             }
-          case 3:
-            return {
-              color: '#1a5c96',
-              x: 70,
-              y: 35,
+            a,
+            button,
+            input {
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
             }
-        }
-      }
-      function getCode() {
-        var code = ''
-        // 65-90
-        // 97-122
-        for (var i = 0; i < 4; i++) {
-          if (Math.random() > 0.5) {
-            code += String.fromCharCode(getRandom(65, 90, true))
-          } else {
-            code += String.fromCharCode(getRandom(97, 122, true))
-          }
-        }
-        return code
-      }
-      function getRandom(min, max, includeMax) {
-        if (includeMax) {
-          return Math.floor(Math.random() * (max - min + 1) + min)
-        }
-        return Math.floor(Math.random() * (max - min) + min)
-      }
-    })(window, document)
-  </script></html>
+            button,
+            input {
+                -webkit-appearance: none;
+                border-radius: 0;
+            }
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+            input {
+                outline: none;
+                vertical-align: middle;
+                padding: 0;
+            }
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            img {
+                vertical-align: middle;
+            }
+            h1,
+            h2,
+            h3,
+            h4,
+            p {
+                margin: 0;
+            }
+            button {
+                border: none;
+                background-color: transparent;
+            }
+            .title {
+                font-size: 0.3rem;
+                text-align: center;
+                padding: 0.64rem 0;
+                color: #f66400;
+            }
+            .tip {
+                width: 6.9rem;
+                height: 3.5rem;
+                margin: 0.3rem auto;
+            }
+            .tip img {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+            .text,
+            .code {
+                width: 6.34rem;
+                height: 0.54rem;
+                border: 1px solid #d4d4d4;
+                margin: 0 auto;
+            }
+            .text input,
+            .code input {
+                height: 100%;
+                background-color: #f8f8f8;
+                color: #1c1c1c;
+                border: none;
+                padding-left: 0.2rem;
+                box-sizing: border-box;
+            }
+            .text input {
+                width: 100%;
+            }
+            .code {
+                display: flex;
+                flex-direction: row;
+                margin-top: 0.3rem;
+            }
+            .code input {
+                width: 4.5rem;
+                background-color: #f8f8f8;
+                border-right: 1px solid #d4d4d4;
+            }
+            .code input::placeholder {
+                color: #696969;
+            }
+            .code i {
+                width: 1.84rem;
+                height: 0.54rem;
+                line-height: 0.54rem;
+                font-size: 0.3rem;
+                text-align: center;
+            }
+            .btn {
+                margin-top: 1.5rem;
+                text-align: center;
+            }
+            .btn a {
+                display: inline-block;
+                width: 3rem;
+                height: 0.68rem;
+            }
+            .btn span {
+                position: relative;
+                display: inline-block;
+                font-size: 0.3rem;
+                width: 2.32rem;
+                height: 0.68rem;
+                line-height: 0.68rem;
+                text-align: center;
+                color: #fff;
+                background-color: #f66400;
+                cursor: pointer;
+            }
+            .btn span::before,
+            .btn span::after {
+                content: '';
+                display: inline-block;
+                width: 0.68rem;
+                height: 0.68rem;
+                border-radius: 50%;
+                position: absolute;
+                background-color: #f66400;
+            }
+            .btn span::before {
+                left: 0;
+                top: 0;
+                transform: translateX(-50%);
+            }
+            .btn span::after {
+                right: 0;
+                top: 0;
+                transform: translateX(50%);
+            }
+            #canv {
+                width: 1.84rem;
+                height: 0.54rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <h1 class="title">云南人社电子表单在线验证平台</h1>
+            <div class="tip"><img src="./images/tip.jpg" /></div>
+            <div class="text"><input type="text" value="" id="downName" /></div>
+            <div class="code">
+                <input type="text" placeholder="请输入图片的验证码" id="val" />
+                <i id="codeBox"
+                    ><canvas id="canv" width="100" height="50"></canvas
+                ></i>
+            </div>
+            <div class="btn">
+                <a href="" id="downBox" download="0.pdf"
+                    ><span id="down">查询</span></a
+                >
+            </div>
+        </div>
+    </body>
+    <script>
+        (function (window, document) {
+            var hash = location.hash.replace(/#/g, '');
+            var btn = document.getElementById('down');
+            var downBox = document.getElementById('downBox');
+            var downName = document.getElementById('downName');
+            var val = document.getElementById('val');
+            var codeBox = document.getElementById('codeBox');
+            var canv = document.getElementById('canv');
+            var ctx = canv.getContext('2d');
+            var code = getCode();
+            var testResault = false;
+            initContent();
+            renderText(code);
+            btn.addEventListener('touchend', () => {
+                testResault = testCode();
+            });
+            codeBox.addEventListener('touchend', () => {
+                resetText();
+            });
+            downBox.addEventListener('touchend', (e) => {
+                if (!testResault) {
+                    e.preventDefault();
+                }
+            });
+            function initContent() {
+                downName.value = hash;
+                downBox.download = hash + '.pdf';
+                downBox.href = './resource/' + hash + '.pdf';
+            }
+            function clear() {
+                val.value = '';
+                ctx.clearRect(0, 0, 100, 50);
+            }
+            function testCode() {
+                var value = val.value.toString().trim().toLowerCase();
+                var text = code.toString().trim().toLowerCase();
+                if (value === text) {
+                    return true;
+                } else {
+                    alert('验证码错误');
+                    return false;
+                }
+            }
+            function resetText() {
+                code = getCode();
+                clear();
+                renderText(code);
+            }
+            function renderText(code) {
+                for (var i = 0; i < code.length; i++) {
+                    drawWord(
+                        code[i],
+                        getRandom(5, 8, true) / 10,
+                        i,
+                        getRandom(-5, 5)
+                    );
+                }
+            }
+            function drawWord(word, size, num, deg) {
+                var info = getInfo(num);
+                ctx.beginPath();
+                ctx.fillStyle = info.color;
+                ctx.font = size + 'rem' + ' Roboto';
+                ctx.save();
+                ctx.rotate((deg * Math.PI) / 180);
+                ctx.fillText(word, info.x, info.y);
+                ctx.restore();
+            }
+            function getInfo(num) {
+                switch (num) {
+                    case 0:
+                        return {
+                            color: '#b9c616',
+                            x: 10,
+                            y: 45,
+                        };
+                    case 1:
+                        return {
+                            color: '#875a85',
+                            x: 30,
+                            y: 41,
+                        };
+                    case 2:
+                        return {
+                            color: '#62d137',
+                            x: 50,
+                            y: 38,
+                        };
+                    case 3:
+                        return {
+                            color: '#1a5c96',
+                            x: 70,
+                            y: 35,
+                        };
+                }
+            }
+            function getCode() {
+                var code = '';
+                // 65-90
+                // 97-122
+                for (var i = 0; i < 4; i++) {
+                    if (Math.random() > 0.5) {
+                        code += String.fromCharCode(getRandom(65, 90, true));
+                    } else {
+                        code += String.fromCharCode(getRandom(97, 122, true));
+                    }
+                }
+                return code;
+            }
+            function getRandom(min, max, includeMax) {
+                if (includeMax) {
+                    return Math.floor(Math.random() * (max - min + 1) + min);
+                }
+                return Math.floor(Math.random() * (max - min) + min);
+            }
+        })(window, document);
+    </script>
+</html>

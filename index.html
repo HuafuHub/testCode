@@ -1,6 +1,15 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/><title></title><style>
-      html {
-        /*
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <title></title>
+        <style>
+            html {
+                /*
         100 * (屏幕尺寸 / 设计基准尺寸)
 
         以iPhone6 plus为基准
@@ -13,157 +22,170 @@
         1vw = 375/100 = 3.75px
         root = 50 / 3.75 = 13.333333333333334vw
       */
-        font-size: 13.333333333333334vw;
-      }
-      body {
-        font-family: helvetica;
-        max-width: 750px;
-        margin: 0 auto;
-        font-size: 0;
-      }
-      body * {
-        -webkit-user-select: none;
-        -webkit-touch-callout: none;
-        -webkit-text-size-adjust: 100%;
-      }
-      a,
-      button,
-      input {
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-      }
-      button,
-      input {
-        -webkit-appearance: none;
-        border-radius: 0;
-      }
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-      input {
-        outline: none;
-        vertical-align: middle;
-        padding: 0;
-      }
-      ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-      img {
-        vertical-align: middle;
-      }
-      h1,
-      h2,
-      h3,
-      h4,
-      p {
-        margin: 0;
-      }
-      button {
-        border: none;
-        background-color: transparent;
-      }
-      body {
-        margin: 0;
-      }
-      .wrap {
-        width: 100vw;
-        height: 100vh;
-        position: relative;
-        text-align: center;
-        padding: 0.6rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-sizing: border-box;
-      }
-      .wrap .warn-icon {
-        display: inline-block;
-        width: 1rem;
-        height: 1rem;
-        background-image: url('./images/warn.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-        margin-top: 2rem;
-      }
-      .wrap .title {
-        font-size: 0.38rem;
-        font-weight: normal;
-        margin: 0.6rem 0;
-      }
-      .wrap .msg {
-        font-size: 0.3rem;
-        margin-top: 0.4rem;
-      }
-      .wrap a {
-        display: inline-block;
-        font-size: 0.3rem;
-        text-decoration: none;
-        color: #5c5a85;
-      }
-      .wrap a.go-show {
-        font-weight: bold;
-        margin-top: 1rem;
-        padding: 0.2rem 1rem;
-        background-color: #f2f2f2;
-        color: #00a64c;
-        border-radius: 0.1rem;
-      }
-      .wrap a.tip {
-        position: absolute;
-        bottom: 0.6rem;
-      }
-      .wrap .content {
-        display: inline-block;
-        width: 6rem;
-        font-size: 0.3rem;
-        color: inherit;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .wrap .all-btn {
-        display: inline-block;
-        width: 0.3rem;
-        height: 0.3rem;
-        background-image: url('./images/down.png');
-        background-repeat: no-repeat;
-        background-size: contain;
-      }
-      .wrap .link.active .content {
-        display: block;
-        word-break: break-all;
-        white-space: normal;
-        overflow: auto;
-        text-overflow: inherit;
-      }
-      .wrap .link.active .all-btn {
-        background-image: url('./images/up.png');
-        margin-top: 0.1rem;
-      }
-    </style></head><body>
+                font-size: 13.333333333333334vw;
+            }
+            body {
+                font-family: helvetica;
+                max-width: 750px;
+                margin: 0 auto;
+                font-size: 0;
+            }
+            body * {
+                -webkit-user-select: none;
+                -webkit-touch-callout: none;
+                -webkit-text-size-adjust: 100%;
+            }
+            a,
+            button,
+            input {
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            }
+            button,
+            input {
+                -webkit-appearance: none;
+                border-radius: 0;
+            }
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+            input {
+                outline: none;
+                vertical-align: middle;
+                padding: 0;
+            }
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            img {
+                vertical-align: middle;
+            }
+            h1,
+            h2,
+            h3,
+            h4,
+            p {
+                margin: 0;
+            }
+            button {
+                border: none;
+                background-color: transparent;
+            }
+            body {
+                margin: 0;
+            }
+            .wrap {
+                width: 100vw;
+                height: 100vh;
+                position: relative;
+                text-align: center;
+                padding: 0.6rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                box-sizing: border-box;
+            }
+            .wrap .warn-icon {
+                display: inline-block;
+                width: 1rem;
+                height: 1rem;
+                background-image: url('./images/warn.png');
+                background-repeat: no-repeat;
+                background-size: contain;
+                margin-top: 2rem;
+            }
+            .wrap .title {
+                font-size: 0.38rem;
+                font-weight: normal;
+                margin: 0.6rem 0;
+            }
+            .wrap .msg {
+                font-size: 0.3rem;
+                margin-top: 0.4rem;
+            }
+            .wrap a {
+                display: inline-block;
+                font-size: 0.3rem;
+                text-decoration: none;
+                color: #5c5a85;
+            }
+            .wrap a.go-show {
+                font-weight: bold;
+                margin-top: 1rem;
+                padding: 0.2rem 1rem;
+                background-color: #f2f2f2;
+                color: #00a64c;
+                border-radius: 0.1rem;
+            }
+            .wrap a.tip {
+                position: absolute;
+                bottom: 0.6rem;
+            }
+            .wrap .content {
+                display: inline-block;
+                width: 6rem;
+                font-size: 0.3rem;
+                color: inherit;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .wrap .all-btn {
+                display: inline-block;
+                width: 0.3rem;
+                height: 0.3rem;
+                background-image: url('./images/down.png');
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+            .wrap .link.active .content {
+                display: block;
+                word-break: break-all;
+                white-space: normal;
+                overflow: auto;
+                text-overflow: inherit;
+            }
+            .wrap .link.active .all-btn {
+                background-image: url('./images/up.png');
+                margin-top: 0.1rem;
+            }
+        </style>
+    </head>
+    <body>
         <div class="wrap">
             <i class="warn-icon"></i>
             <h3 class="title">将要访问</h3>
             <div class="link">
-                 <span class="content">http://221.213.62.194/YTJAuthInterface/checkReport.do?printID=4820869451&aac002=532303199101244551</span>
-                 <i class="all-btn"></i>
-                 </div>
-                 <p class="msg">该地址为IP地址，请使用域名访问网站。</p> 
-                 <a href="" class="go-show">继续访问</a> 
-                 <!-- <a href="https://weixin110.qq.com/security/newreadtemplate?t=webpage_intercept/w_form&url=http%3A%2F%2F221.213.62.194%2FYTJAuthInterface%2FcheckReport.do%3FprintID%3D4820869451%26aac002%3D532301199507294511&blocktype=102&exportkey=A2GArat%2Bpn9EPqEVi6p9gek%3D&pass_ticket=IGWQCjOJJHxPKrT%2FNR2jfYsx3y05Rhw5eBrv%2BjDZNvFWzJBPkW1F4PcWoZyd4gW6&wechat_real_lang=zh_CN&wx_header=0#/" class="tip">申请恢复</a> -->
-                 </div>
-                 <script>
-      var link = document.querySelector('.link')
-      var all = document.querySelector('.all-btn')
-      var go = document.querySelector('.go-show')
-      go.href = './show.html' + location.hash
-      all.addEventListener('touchend', (e) => {
-        if (link.className === 'link active') {
-          link.className = 'link'
-        } else {
-          link.className = 'link active'
-        }
-      })
-    </script></body></html>
+                <span class="content"
+                    >http://221.213.62.194/YTJAuthInterface/checkReport.do</span
+                >
+                <i class="all-btn"></i>
+            </div>
+            <p class="msg">该地址为IP地址，请使用域名访问网站。</p>
+            <a href="" class="go-show">继续访问</a>
+            <!-- <a href="https://weixin110.qq.com/security/newreadtemplate?t=webpage_intercept/w_form&url=http%3A%2F%2F221.213.62.194%2FYTJAuthInterface%2FcheckReport.do%3FprintID%3D4820869451%26aac002%3D532301199507294511&blocktype=102&exportkey=A2GArat%2Bpn9EPqEVi6p9gek%3D&pass_ticket=IGWQCjOJJHxPKrT%2FNR2jfYsx3y05Rhw5eBrv%2BjDZNvFWzJBPkW1F4PcWoZyd4gW6&wechat_real_lang=zh_CN&wx_header=0#/" class="tip">申请恢复</a> -->
+        </div>
+        <script>
+            var content = document.querySelector('.content');
+
+            content.textContent = content.textContent + location.search;
+            var result = location.search.match(/printID=(\d{10})/);
+            var code = result ? result[1] : '';
+
+            var go = document.querySelector('.go-show');
+            go.href = './show.html#' + code;
+
+            var all = document.querySelector('.all-btn');
+            var link = document.querySelector('.link');
+            all.addEventListener('touchend', (e) => {
+                if (link.className === 'link active') {
+                    link.className = 'link';
+                } else {
+                    link.className = 'link active';
+                }
+            });
+        </script>
+    </body>
+</html>
